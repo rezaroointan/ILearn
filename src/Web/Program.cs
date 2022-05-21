@@ -1,7 +1,24 @@
+using Data.Context;
+using Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add db context to the container
+builder.Services.AddDbContextPool<ILearnDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"))
+);
+
+// Add identity context
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<ILearnDbContext>()
+    .AddDefaultTokenProviders();
+
+
 
 var app = builder.Build();
 
