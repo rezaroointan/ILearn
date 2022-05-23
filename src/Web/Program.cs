@@ -1,3 +1,5 @@
+using Core.Interfaces;
+using Core.Services;
 using Data.Context;
 using Data.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -8,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+#region Context
 // Add db context to the container
 builder.Services.AddDbContextPool<ILearnDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"))
@@ -17,8 +20,14 @@ builder.Services.AddDbContextPool<ILearnDbContext>(options =>
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<ILearnDbContext>()
     .AddDefaultTokenProviders();
+#endregion
+
+#region IOC
+// Add email sender service to the container
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 
+#endregion
 
 var app = builder.Build();
 
