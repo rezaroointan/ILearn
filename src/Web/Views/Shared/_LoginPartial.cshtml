@@ -1,10 +1,21 @@
-﻿@if (User.Identity.IsAuthenticated)
+﻿ @if (Context.User.Identity.IsAuthenticated)
 {
     <div class="dropdown text-end ms-0 me-auto">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
        data-bs-toggle="dropdown" aria-expanded="false">
             <img src="images/lionel-messi.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
         </a>
+
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item text-danger">@Context.User.Identity.Name</a></li>
+
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <form method="post" asp-action="Logout" asp-controller="Account">
+                <input type="submit" value="خروج" class="dropdown-item text-danger">
+            </form>
+        </ul>
     </div>
 }
 else

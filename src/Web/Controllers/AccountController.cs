@@ -46,7 +46,7 @@ namespace Web.Controllers
                         action: "ConfirmEmail",
                         controller: "Account",
                         values: new { userName = user.UserName, token = emailConfiramtionToken },
-                        protocol: Request.Scheme );
+                        protocol: Request.Scheme);
 
                     await _emailSender.SendAsync(user.Email, "Eamil Confirmation", emailBody);
                     #endregion
@@ -70,7 +70,7 @@ namespace Web.Controllers
                 return NotFound();
 
             var user = await _userManager.FindByNameAsync(userName);
-            if(user == null)
+            if (user == null)
                 return NotFound();
 
             var result = await _userManager.ConfirmEmailAsync(user, token);
@@ -111,6 +111,14 @@ namespace Web.Controllers
 
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
