@@ -1,0 +1,25 @@
+﻿@page "{userId}"
+@model Web.Pages.Admin.Users.DeleteModel
+@{
+    ViewData["Title"] = "حذف کاربر";
+}
+
+<h3 class="mb-3">ViewData["Title"]</h3>
+<!-- <div class="mb-2">
+    <img class="rounded-2" src="../images/lionel-messi.jpg" height="200" width="200">
+</div> -->
+<ul class="port-project-info">
+    <li><span>نام:</span> @Model.DetailUser.Name</li>
+    <li><span>نام کاربری:</span> @Model.DetailUser.UserName</li>
+    <li><span>ایمیل:</span> @Model.DetailUser.Email</li>
+    <!-- <li><span>نقش ها:</span>مدیر سایت / مدرس </li> -->
+</ul>
+<div class="clearfix"></div>
+<div class="alert alert-danger ms-1">
+    آیا می خواهید این کاربر را حذف کنید؟
+</div>
+<a asp-action="Index" class="btn btn-secondary">انصراف</a>
+<form method="post" class="d-inline-block">
+    <input type="hidden" name="userId" value="@Model.DetailUser.Id" />
+    <input type="submit" class="btn btn-danger" value="حذف" />
+</form>

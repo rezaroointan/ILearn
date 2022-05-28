@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 #region Context
 // Add db context to the container
@@ -26,7 +27,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
 // Add email sender service to the container
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
-
+builder.Services.AddTransient<IUserService, UserService>();
 #endregion
 
 var app = builder.Build();
@@ -50,5 +51,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();

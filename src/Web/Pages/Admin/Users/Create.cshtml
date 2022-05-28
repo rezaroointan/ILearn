@@ -1,0 +1,77 @@
+﻿@page
+@model Web.Pages.Admin.Users.CreateModel
+@{
+    ViewData["Title"] = "افزودن کاربر";
+}
+<h3 class="mb-3">افزودن کاربر</h3>
+<form class="ms-3" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div class="mb-3">
+        <label asp-for="User.Name"  class="form-label"></label>
+        <input asp-for="User.Name" type="text" class="form-control" placeholder="علی محمدی">
+        <span asp-validation-for="User.Name"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="User.UserName" class="form-label">نام کاربری</label>
+        <input asp-for="User.UserName" type="text" class="form-control" placeholder="alimohamadi21">
+        <span asp-validation-for="User.UserName"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="User.Email" class="form-label">ایمیل</label>
+        <input asp-for="User.Email" type="email" class="form-control" placeholder="alimoh@gmail.com">
+        <span asp-validation-for="User.Email"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="User.Password" class="form-label">کلمه عبور</label>
+        <input asp-for="User.Password" type="password" class="form-control">
+        <span asp-validation-for="User.Password"></span>
+    </div>
+    <!-- ToDo: role and image section -->
+    <!--<div class="mb-3">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        نقش ها
+                    </div>
+                    <div class="card-body ">
+                        <h5 class="card-title">انتخاب نقش کاربر</h5>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input float-end ms-2"
+                                id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">مدیر سایت</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input float-end ms-2"
+                                id="exampleCheck2">
+                            <label class="form-check-label" for="exampleCheck2">مدرس</label>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input float-end ms-2"
+                                id="exampleCheck3">
+                            <label class="form-check-label" for="exampleCheck3">کاربر عادی</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        عکس پروفایل
+                    </div>
+                    <div class="card-body ">
+                        <img src="../images/lionel-messi.jpg" class="img-thumbnail"
+                            style="height: 120px; width: 120px;" alt="">
+                        <input type="file" class="d-block mt-2" value="انتخاب عکس">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <div class="mb-3">
+        <a asp-page="./Index" class="btn btn-secondary">انصراف</a>
+        <input type="submit" class="btn btn-primary" value="ثبت">
+    </div>
+</form>

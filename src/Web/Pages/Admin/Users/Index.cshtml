@@ -1,0 +1,44 @@
+﻿@page
+@model Web.Pages.Admin.Users.IndexModel
+@{
+    ViewData["Title"] = "لیست کاربر";
+}
+<div class="flex-column ">
+    <h3 class="mb-3 d-inline-block">@ViewData["Title"]</h3>
+    <a class="btn btn-primary float-start ms-2" asp-page="Create"><i class="fa fa-plus"></i></a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">نام</th>
+            <th scope="col">نام کاربری</th>
+            <th scope="col">ایمیل</th>
+            <th scope="col">وضعیت</th>
+            <th scope="col">عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>
+                    @if (user.EmailConfirmed)
+                    {
+                        <i class="fa fa-check-circle text-success"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-remove text-danger"></i>
+                    }
+                </td>
+                <td>
+                    <a asp-page="Detail" asp-route-userId="@user.Id" class="btn btn-sm btn-info"><i class="fa fa-info"></i></a>
+                    <a asp-page="Delete" asp-route-userId="@user.Id" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

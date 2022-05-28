@@ -1,0 +1,16 @@
+﻿@page "{userId}"
+@model Web.Pages.Admin.Users.DetailModel
+@{
+    ViewData["Title"] = "جزئیات کاربر";
+}
+<h3 class="mb-3">@ViewData["Title"]</h3>
+<!-- <div class="mb-2">
+    <img class="rounded-2" src="../images/lionel-messi.jpg" height="200" width="200">
+</div>-->
+<ul class="port-project-info">
+    <li><span>نام:</span> @Model.UserDetail.Name</li>
+    <li><span>نام کاربری:</span> @Model.UserDetail.UserName</li>
+    <li><span>ایمیل:</span> @Model.UserDetail.Email</li>
+    <!--<li><span>نقش ها:</span>مدیر سایت / مدرس </li>-->
+</ul>
+<a asp-page="Index" class="btn btn-secondary">بازگشت</a>
